@@ -1,0 +1,12 @@
+from pyspark.sql import SparkSession
+from pyspark import sparkFiles
+spark = sparksession.builder.getOrcreate()
+url = "https://r...content-available-to-author-only...t.com/mohdkhallaf/Jobathon/main/jobs.csv"
+spark.sparkcontext.addFile(url)
+df = spark.read.csv(sparkFiles.get("jobs.csv"),inferSchema=True, header=True)
+df.show()
+from pyspark.sql.functions import count, col
+df.groupBy("job") \
+  .agg(count("job").alias("jobs_count")) \
+  .sort("sum_salary") \
+  .show()
